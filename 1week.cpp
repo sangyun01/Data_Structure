@@ -10,6 +10,8 @@ int main() {
     int sum = x + y;
 
     cout << "There sum is " << sum << endl;
+    cout << "please stop it" << endl;
+    
 
     return EXIT_SUCCESS;
 }
