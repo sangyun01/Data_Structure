@@ -21,6 +21,7 @@ int main() {
     int sum = x + y;
 
     Day today = THU;
+    Day today = MON;
 
     cout << "There sum is " << sum << endl;
     cout << today << endl;
