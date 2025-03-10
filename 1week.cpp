@@ -3,15 +3,28 @@
 
 using namespace std;
 
+enum Day
+{
+    SUN,
+    MON,
+    TUE,
+    WED,
+    THU,
+    FRI,
+    SAT
+};
+
 int main() {
     int x, y;
     cout << "please enter two numbers: ";
     cin >> x >> y;
     int sum = x + y;
 
+    Day today = THU;
+    Day today = MON;
+
     cout << "There sum is " << sum << endl;
-    cout << "please stop it" << endl;
-    
+    cout << today << endl;
 
     return EXIT_SUCCESS;
 }
