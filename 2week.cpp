@@ -51,6 +51,13 @@ int main() {
 
     cout << "Numerical value of today : " << Today << endl;
 
+    int x, y;
+    cout << "x,y value" << endl;
+
+    cin >> x >> y;
+
+    cout << x << y << endl;
+
     int i = 2;
     int j = i++;
     cout << j << endl;
