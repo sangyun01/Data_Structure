@@ -2,6 +2,7 @@
 #include <iostream>
 
 using namespace std;
+using MealType = string;
 
 enum Day
 {
@@ -15,6 +16,31 @@ enum Day
 };
 
 int a[] = {0, 1, 2, 3};
+
+class Passenger {
+    public:
+        Passenger();
+        Passenger(const string &nm, MealType mp, const string &ffn = "NONE");
+        Passenger(const Passenger &pass);
+        bool isFrequentFlyer() const;
+
+        void makeFrequenFlyer(const string &newFreqFlyerNo);
+
+    private:
+        string name;
+        MealType mealPref;
+        bool isFreqFlyer;
+        string freqFlyerNo;
+};
+
+bool Passenger::isFrequentFlyer() const { //Passenger class 외부에서 선언 -> ::사용용
+    return isFreqFlyer;
+}
+
+void Passenger::makeFrequenFlyer(const string& newFreqFlyerNo) {
+    isFreqFlyer = true;
+    freqFlyerNo = newFreqFlyerNo;
+}
 
 int main() {
     Day Today = Saturday; // Saturday = 6
