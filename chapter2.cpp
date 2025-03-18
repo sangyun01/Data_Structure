@@ -84,6 +84,16 @@ int main() {
     cout << p4 << endl;
     cout << p5 << endl;
 
+    Passenger *pp1 = new Passenger;
+    Passenger *pp2 = new Passenger("Joe Blow", VEGETARIAN);
+
+    cout << *pp1 << endl;
+    cout << *pp2 << endl;
+
+    Passenger pa[20];
+
+    delete pp1;
+    delete pp2;
 
     return EXIT_SUCCESS;
 }
