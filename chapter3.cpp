@@ -59,6 +59,13 @@ void Scores::add(const GameEntry &e){
     entries[i + 1] = e;
 }
 
+void Scores::print() {
+    cout << "print the array" << endl;
+    for (int i = 0; i < numEntries; i++) {
+        cout << i << ":" << entries[i].getScore() << endl;
+    }
+}
+
 GameEntry Scores::remove(int i) {
     if((i<0)||(i<=numEntries))
         cout << "Invalid Index" << endl;
