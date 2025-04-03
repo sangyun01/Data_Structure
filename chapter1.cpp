@@ -33,7 +33,7 @@ class Passenger {
         string freqFlyerNo;
 };
 
-bool Passenger::isFrequentFlyer() const { //Passenger class 외부에서 선언 -> ::사용용
+bool Passenger::isFrequentFlyer() const { //Passenger class 외부에서 선언 -> ::사용
     return isFreqFlyer;
 }
 
