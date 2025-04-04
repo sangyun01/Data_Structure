@@ -73,6 +73,22 @@ void DLinkedList::remove(DNode *v) {
 void DLinkedList::removeFront() { remove(header->next); }
 void DLinkedList::removeBack() { remove(trailer->prev); }
 
+void listReverse(DLinkedList& L) {
+    DLinkedList T;
+
+    while (!L.empty()) {
+        string s = L.front();
+        L.removeFront();
+        T.addFront(s);
+    }
+    while (!T.empty()) {
+        string s = T.front();
+        T.removeBack();
+        L.addBack(s);
+    }    
+}
+
+
 int main() {
 
     return EXIT_SUCCESS;
