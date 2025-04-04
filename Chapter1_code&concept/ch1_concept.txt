@@ -1,0 +1,181 @@
+Ch1.1 Basic C++ programming Elements / 기본적인 C++프로그래밍 요소 (p.2 ~ 45)
+ex. code1 -> ch1.cpp파일에 작성
+2개의 int형 argument를 받아서 새로운 int argument에 값을 저장하는 코드
+
+<iostream> -> c++문법 / <cstdio> -> c문법
+
+주석 여러 줄(블럭 단위) -> /*   */ 사용한다.
+주석 한 줄 -> //사용한다.
+
+I/O operator system
+input -> >> // 값을 오른쪽에 있는 변수에 넣는다.
+output -> << // 값을 왼쪽에 있는 cout을 이용하여 출력한다. 
+
+Fundamental Type
+bool    : boolean형 true/false 반환
+char    : character형(문자) - 8bit
+short   : short int - min 16bit
+int     : 정수형 - 16bit
+long    : long int - min 32bit
+float   : 소수형 - 16bit(4byte) 
+double  : 소수형 - 32bit(8byte)
+
+진수
+8진수 0400 = 10진수 256 = 16진수 0x100 과 같다.
+(8^2)*4 = 256 = (16^2)*1
+
+enum    : 집합
+ex) 열거형 집합 Day 선언
+- enum의 인자에 값을 대입하면 그 인자를 호출하면 값이 반환된다.
+- 아니라면 index 순서로 값 반환 0부터 시작한다.
+enum Day
+{
+    Sunday,
+    Monday,
+    Tuesday,
+    Wednesday,
+    Thursday,
+    Friday,
+    Saturday
+};
+
+Pointers(포인터)
+* : 주소에 있는 실제값(contents)을 가지고 있음 / & : 주소(address)를 가지고 있음
+char *p = &ch //p는 주소 ch를 가진다.
+만약 cout << &ch를 한다면 주소가 출력이지만 cout << ch를 한다면 값이 출력이 된다.
+if int *x, y, z;를 선언한다면 x만 정수형 포인터 변수로 y, z는 정수형 변수로 초기화 된다.
+
+Array(배열)
+index "0"부터 시작한다.
+2차원 배열이라면 A[행][열]로 선언을 하면 된다.
+
+String(스트링)
+비교( > )를 하게 된다면 처음에 오는 char를 기준으로 비교를 한다. 동일하다면 다음 char 기준으로
+
+new, del keyword
+new : 메모리에서 공간할당
+delete : new로 할당한 메모리 반환 new를 선언했다면 delete도 해야 메모리 낭비가 없음.
+
+Local, Global scope
+변수를 선언하는 위치에 따라 지역변수 혹은 전역변수로 선언이 된다.
+코드를 잘 확인하여 값의 변화 및 출력을 봐야 한다.
+
+Ch1.2 Expressions / 연산식 (p.46 ~ 61)
+class_name.member는 pointer->member와 동일하며 다시 말해 *pointer.member와 같은 형태를 가진다.
+
+Arithmetic operator(산술 연산자)
++ add(더하기)
+- subtract(빼기)
+* multiply*(곱)
+/ division(몫)
+% modulo(나머지)
+
+Increment and Decrement operator(증감 연산자)
+a++ : a가져오고 +1
+a-- : a가져오고 -1
+++a : +1하고 a가져오기
+--a : -1하고 a가져오기
+
+Relational & Logical operator(관계 논리 연산)
+<, >, >=, <=, ==ㅡ !=
+! -> 부정
+|| -> or
+&& -> and (왼쪽부터 실행하고 오른쪽 실행한다.)
+
+Bitwise operator
+~ 보수
+& 곱
+^ exclusive-or
+| or(비트 합)
+<< 비트 왼쪽 이동
+>> 비트 오른쪽 이동
+
+자료형 변환 시 short -> int는 자료손실이 없지만, int->short, int->double는 자료손실이 발생할 수 있다. 
+정적 형변환은
+static_cast<type>(exp)로 가능하다.
+ex) 
+double a = 5.4; 
+int b = static_cast<int>(a) // b = 5로 저장된다.
+
+Ch1.3 Control Flow (P.62 ~ 70)
+조건문 문법(if, switch)
+if (조건) {
+    true_statement
+}
+else if (조건) {
+    else if statement
+}
+else {
+    else statement
+}
+조건을 잘 설정해야한다.
+ex) 0~5/6~10/11~20을 원한다면 20부터 시작해야한다. 혹은 &&이용하기
+
+switch(var) {
+    case "~":
+        함수
+        break();//이거 안하면 아래 case도 작동
+    default :
+        함수
+        break; 
+}
+
+반복문 문법(for, while)
+for(int i = 0; i > condition; i++) {
+    반복할 문장
+}
+while(condition) { //do while문도 있음
+    반복할 문장
+}
+
+break은 함수를 탈출 / continue는 진행중인 반복문을 skip하고 다시 반복문을 진행한다.
+ex) 10이상이면 탈출 -> break / 3의 배수만 출력을 원한다 -> continue 이용한다.
+
+Ch1.4 Functions (p.71 ~ 86)
+함수는 아래와 같이 구성이 되어있다. / the function is consist argument, return type, function name, function body
+argument_list   : 매개변수를 받는 값을 입력한다.
+return_type     : 함수를 선언하면서 이 함수의 목적에 따라 void, double, int형 등 선언을 한다.
+function_name   : 함수이름
+function_body   : 함수몸체
+
+아래와 같이 구성이 되어있다.
+return_type function_name(argument_list) {
+    function_body
+}
+ex) 
+bool evenSum(int a[], int n) {
+    int sum = 0;
+    ~~
+    return (sum % 2 == 0);
+}
+
+main함수와 같은 부분에서는 evenSum(list, 6)과 같은 형태로 선언을 하면 list(actual argument) -> a[](formal argument)에 n=6으로 인자가 전달이 된다.
+따라서 이때 전역변수, 지역변수의 값 변화 및 참조 값의 변화를 잘 봐야한다.
+지역변수 : 함수 내에서만 값이 변화며 main에서는 변하지 않을 수 있다.
+전역변수 : 변수가 전역으로 선언이 되어있기에 값이 계속하여 변한다.
+레퍼런스 : 전역변수와 마찬가지로 함수내부에서 변하면 main에서도 변한다.
+const reference는 상수로 선언이 되어있기에 값이 변하게 되면 error가 발생한다.
+
+overloading(오버로딩)
+사용자가 의도 혹은 의도하지 않게 동일한 함수명으로 설정하게 된다면 발생한다.
+compiler에서 type에 따라 함수를 자동으로 실행해준다.
+
+Ch1.5 Classes (p.87 ~ 108)
+public  : 공용 인터페이스(public interface)
+private : 클래스 외부에서 접근이 불가능하도록 선언한 private변수들 // 외부에서 의도치 않게 값이 변형되는 것을 방지한다.
+friend  : 외부 함수에서도 private변수를 사용할 수 있게 해주는 특정 변수들
+
+
+대부분(?) public에는 생성자, 소멸자, 함수들을 선언하며, private에는 변수들을 선언한다.
+
+class member function은 크게 2type으로 분류한다.
+1. accessor function -> only read class data 주로 const변수들
+2. update function -> alter class data
+
+생성자는 기본 생성자, 디폴트 생성자, 복사 생성자로 분류가 가능하다.
+Basic constructor   : class_name();                 //기본
+default constructor : class_name(int a, double b);  //디폴트
+copy constructor    : class_name(Classes& other);   //값 복사
+
+destructors(소멸자)
+delete A[] data; //array 형태로 delete를 하지 않는다면 처음 index만 삭제 되면서 메모리 낭비가 발생한다.
