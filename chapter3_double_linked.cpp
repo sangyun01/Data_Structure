@@ -1,4 +1,4 @@
-//chapter 3 - single linked list
+//chapter 3 - double linked list
 #include <cstdio>
 #include <iostream>
 
@@ -51,6 +51,7 @@ DLinkedList::~DLinkedList() {
 bool DLinkedList::empty() const { return (header->next == trailer); }
 const Elem &DLinkedList::front() const { return header->next->elem; }
 const Elem &DLinkedList::back() const { return trailer->prev->elem; }
+
 void DLinkedList::add(DNode *v, const Elem &e) {
     DNode *u = new DNode;
     u->elem = e;
@@ -61,3 +62,18 @@ void DLinkedList::add(DNode *v, const Elem &e) {
 }
 void DLinkedList::addFront(const Elem &e) { add(header->next, e); }
 void DLinkedList::addBack(const Elem &e) { add(trailer, e); }
+
+void DLinkedList::remove(DNode *v) {
+    DNode *u = v->prev;
+    DNode *w = v->next;
+    u->next = w;
+    w->prev = u;
+}
+
+void DLinkedList::removeFront() { remove(header->next); }
+void DLinkedList::removeBack() { remove(trailer->prev); }
+
+int main() {
+
+    return EXIT_SUCCESS;
+}
