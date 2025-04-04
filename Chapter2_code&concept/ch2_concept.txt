@@ -1,0 +1,37 @@
+Ch2.1 Goals, Principles, and Patterns / 목표, 원리, 그리고 패턴 (p.10 ~ 19)
+객체지향의 설계 목표는 총 3가지이다.
+Robustness(견고성)      - 예상치 못한 입력에 대응할 수 있다.
+Adaptability(적응성)    - 다른 HW나 운영체제에서도 최소한의 변화로 소프트웨어가 실행되어야 한다.
+Reusability(재활용성)   - 다른 분야의 응용에 쉽게 사용할 수 있어야 한다.
+
+객체지향의 설게 원리는 3개이다.
+Abstraction(추상화)     - distill a complicated system down to its most fundamental parts / 복잡한 시스템으로부터 가장 근본적인 부분을 추출한다.
+Encapsulation(캡슐화)   - should not reveal the internal details of their respective implementations / 구현의 내부사항이 외부로 드러나지 않아야 한다.
+Modularity(모듈화)      - different components of a SW system are divided into separate functional units / 올바르게 상호작용하도록 구성요소가 잘 조직화되어야 한다.
+
+Hierarchical organization(계층적 조직화) - 가장 추천하는 방식
+is a 관계로 각각의 링크가 연결되어 있다.
+
+Ch2.2 Inheritance and Polymorphism / 상속과 다형성 (p.20 ~ 61)
+Inheritance(상속)
+class를 사용하면서 크게 2가지로 데이터를 분류가 가능하다. -> 상위정보들, 하위정보들
+ex) 동물(상위정보) -> 강아지(하위정보)
+하위정보는 동물의 정보도 가지고 있다. 이러한 상황을 상속이라 한다.
+모든 요소에 공통된 정보(generic class)와 각 요소들에 대해 특정된 정보(specialized classes)로 선언을 한다.
+generic class -> base class, parents class, superclass라고도 부른다. ex) class Person
+derived class -> child class, subclass라고도 부른다. ex) class Student : public Person // is a relationship -> Student is a Person
+따라서 Person에서 pubilc이라면 Student에서도 마찬가지로 public이다. 
+
+protected 멤버
+자식 클래스가 부모 클래스로부터 상속을 받더라도 private변수를 가져오는 것은 불가능 함.
+그렇기에 함수를 호출하는데 있어 제약이 발생한다. 이를 해결하기 위해서 protected 멤버 -> 상속을 받는 클래스는 접근이 가능하다.
+
+Student student("A", "B", "C", 1234)와 Student *s = new Student("A", "B", "C", 1234)는 동일하다.
+
+생성자의 경우는 부모 클래스를 먼저 생성 후, 자식 클래스를 생성하였다.
+하지만, 소멸자의 경우는 자식 클래스를 먼저 제거한 후, 부모 클래스를 이후에 삭제해야 한다. // calls ~Student() then ~Person()
+
+
+
+Ch2.3 Templates / 상속과 다형성 (p.62 ~ 65)
+
