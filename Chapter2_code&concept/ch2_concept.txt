@@ -31,7 +31,59 @@ Student student("A", "B", "C", 1234)와 Student *s = new Student("A", "B", "C", 
 생성자의 경우는 부모 클래스를 먼저 생성 후, 자식 클래스를 생성하였다.
 하지만, 소멸자의 경우는 자식 클래스를 먼저 제거한 후, 부모 클래스를 이후에 삭제해야 한다. // calls ~Student() then ~Person()
 
+Static Binding(정적 바인딩)
+compile을 진행하면서 어떤 함수를 호출하는지 결정이 된다.
+-기본적으로는 declared type(선언된 타입)을 기준으로 호출한다.   - default action is to consider an objects' declared type
+ex)
+Person* pp[100]; // Person 100개의 포인터 배열 선언
+pp[0] = new Person();   // Person 1명
+pp[1] = new Student();  // Student 1명 추가
 
+pp[0]->print(); //둘다 Person의 print함수 호출
+pp[1]->print(); //
 
-Ch2.3 Templates / 상속과 다형성 (p.62 ~ 65)
+Virtual function(가상 함수)
+virtual void print()를 base class(public)에서 선언
+pp[0]->print(); //  Person의 print함수 호출
+pp[1]->print(); //  Student의 print함수 호출하는데(dynamic binding)
 
+다시 말해, 컴파일러는 일단 Person*으로 선언된 부분을 우선적으로 본다.
+하지만 만약 virtual이 있다면 재확인하여 Student함수를 호출하도록 한다.  - in dynamic binding, objects contents determine which member function is called.
+print 함수 앞에 virtual void print()를 선언한다면, 선언된 각각의 배열 type에 맞추어 작동하도록 한다. - base class(parents class)만 선언한다면 subclass도 자동 선언된
+
+Virtual Destructors(가상 소멸자)
+생성자는(constructor) 선언을 하면서 type을 중요시하기에 가상 생성자는 존재하지 않는다.
+하지만, 소멸자의 경우 virtual function을 사용하면서 생성된 메모리 할당을 완전히 제거해주기 위해서는 virtual destructors가 필요로 한다.
+=> 즉 상속(Inheritance)을 사용한다면 무조건 virtual destructors를 사용해야 한다.
+선언하지 않는다면, base class만 사라지고, subclass의 메모리는 그대로 유지되어 메모리 누수가 발생하게 된다.
+
+Polymorphism(다형성)
+변수가 여러 타입을 가질 수 있음 - ability of variable to take different types
+if) p->a() 호출한다.
+p pointer는 T타입의 객체를 가르킨다. -> 그러면 T::a()를 호출한다.   //override
+p pointer는 S타입의 객체를 가르킨다. -> 그러면 S::a()를 호출한다.   //override
+
+Specialization(특수화) - Polymorphism
+could require that override sniff function -> 자식 클래스를 더 구체화하여 정의가 가능하다.
+
+Extension(확장) - Polymorphism
+add new functions that are not present in base class -> 자식 클래스에 새로운 함수를 추가하여 작성한다.
+
+example of code Inheritance where the ch.2_Inheritance
+Algorithm of code ->
+Arithmetic(등차수열), Geometric(등비수열)
+
+Ch2.3 Templates / - (p.62 ~ 65)
+Function Templates() -> 하나의 타입이 아닌 여러타입에서 함수를 사용할 수 있도록 선언을 함
+
+지금까지는 하나의 자료형을 선언하여 함수를 정의했다.
+int integerMin(int a, int b)    {
+    return (a < b ? a : b)
+}
+//using function templates
+template<typename T>
+T genericMin(T a, T b) {
+    return (a < b ? a : b)
+}
+
+이때 a는 double 형 b는 int 형이라면 오류가 발생하게 된다.
