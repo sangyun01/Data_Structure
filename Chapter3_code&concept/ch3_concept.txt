@@ -1,0 +1,69 @@
+Ch3.1 Using Arrays / 배열 사용 (p.2 ~ 28)
+## High score entries for a video game -
+구현 목표
+1. GameEntry를 class로 선언한다.
+2. 상위 점수를 저장하기 위한 class Scores를 만든다. 
+3. GameEntry는 선수 이름과 점수를 가져올 수 있다.
+4. Scores는 게임 엔트리 추가 및 i번째 엔트리를 삭제할 수 있다.
+
+class를 생성하는 과정에서 받은 변수들은 다 정의를 해줘야 한다.
+method 1. class A::A(int ~, int ~) : ~(~), ~(~) {}
+method 2. class A::A(int ~, int ~) {~ = ~; ~ = ~;}
+
+숫자를 중간에 삽입을 한다면?
+가장 오른쪽 끝에 있는 값부터 오른쪽으로 이동하여야 한다.
+-> why? 그렇지 않다면 override가 발생하게 되면서, 같은 값(큰값)이 계속 저장되기 때문
+
+중간에 있는 숫자를 삭제한다면?
+삭제한 빈칸을 기준으로 왼쪽부터 이동하여야 한다.
+-> why? 그렇지 않다면 마찬가지로 override가 발생하면서, 같은 값(작은 값)이 계속해서 저장되기 때문
+
+Complexity는 대부분 반복문이 차지한다.
+그렇기에 오름차순을 하는 반복문에서 영향이 가장 적은 시나리오는 이미 오름차순인 정렬이고, 많은 시나리오는 내림차순인 정렬이다.
+
+Sorting Algorithm : using insertion-Sort
+가장 왼쪽 다음의 값을 뽑는다. -> index 1의 값을 / 왼쪽과 비교할 건데, index 0은 왼쪽이 없으니까!
+그 숫자를 index 0과 비교한다.
+만약 index 1이 더 크다? 그냥 둔다.
+만약 index 0이 더 크다? 0<->1 교체한다.
+
+ex. BCDAE의 배열이 있다고 하자
+B는 두고 C(indxe 1)부터 시작한다.
+1. B vs C 그대로 : BCDAE
+D를 뽑는다.
+2. C vs D 그대로 : BCDAE
+A를 뽑는다.
+3. D vs A -> D를 오른쪽으로 한 칸 이동한다.
+3'. C vs A -> C를 오른쪽으로 한 칸 이동한다.
+3''. B vs A -> B를 오른쪽으로 한 칸 이동한다.
+빈칸에 A를 삽입한다. : ABCDE
+4. D vs E 그대로 : ABCDE
+완료.
+
+int A[8][10]; 이면 행이 8이고 열이 10인 2차원 배열을 생성한다.
+특정 값을 가져오려면, int x = A[3][5];의 형태로 가져오면 된다.
+출력은 cout << A[3][5] << endl; 하면 된다.
+
+이중 포인터를 2차원 배열처럼 사용이 가능하다.
+int **M = new int*[n];
+-> 이중 포인터 M을 동적 할당(dynamic Allocation)한다. 이때 int*[n] 실행하면서 크기가 n개로 정해진다. / int*타입을 n개 가질 수 있다.
+for (int i = 0; i < n; i++) {
+    -> 각 행에 대해서
+    M[i] = new int[m];
+    -> int*타입이 m개를 가지도록 동적 할당을 시켜준다.
+}
+즉, n(행) by m(열)의 구조를 가진 포인터(2차원 배열)을 선언해주는 과정이다.
+
+제거의 경우 m(열)부터 해주고 n(행)을 제거한다.
+for (int i = 0; i < n; i++) {
+    delete[] M[i];  //각각의 열을 제거해주는 과정
+}
+delete[] M; //행을 제거한다. -> 완전 삭제됨. 만약 이걸 먼저 하면 메모리 누수가 발생한다. (Memory leaked occurs)
+
+Ch3.2 Singly Linked Lists / 단일 링크드 리스트 (p.29 ~ 44)
+
+Ch3.3 Doubly Linked Lists / 이중 링크드 리스트 (p.45 ~ 56)
+
+Ch3.4 Circularly Linked Lists and List Reversal / 환형 링크드 리스트와 리스트 반전 (p.57 ~ 69)
+
+
