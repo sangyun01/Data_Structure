@@ -113,7 +113,17 @@ void DLinkedList::add(DNode *v, const Elem &e) {}
 void DLinkedList::remove(DNode *v) {}
     // u-> v -> w 구조
 
-
 Ch3.4 Circularly Linked Lists and List Reversal / 환형 링크드 리스트와 리스트 반전 (p.57 ~ 69)
+cursor를 가장 뒤에 선언한다면, 
+function
+-> back, front, advance, add, remove
+Circularly List에서는 dummy node가 존재하지 않는다.
 
+add에서는 CNode* v = new CNode
+delete에는 CNode* old = cursor->next
 
+역순 double
+L(원래) / T(임시 생성)
+L (a-b-c)라면
+T에 역순으로 (c-b-a) 저장
+L에 정방향 (c-b-a) 저장

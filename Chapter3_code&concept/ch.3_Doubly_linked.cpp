@@ -102,6 +102,22 @@ void DLinkedList::removeBack(DNode *v) {
     // remove the node where last locate about trailer
 }
 
+void listReverse(DLinkedList& L) {
+    DLinkedList T;
+
+    while (!empty()) {
+        string s = L.front();
+        L.removeFront();
+        T.addFront(s);
+    }
+
+    while (!empty()) {
+        string s = T.front();
+        T.removeFront();
+        L.addBack(s);
+    }
+}
+
 int main() {
 
     return EXIT_SUCCESS;
