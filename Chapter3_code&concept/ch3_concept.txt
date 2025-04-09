@@ -61,6 +61,30 @@ for (int i = 0; i < n; i++) {
 delete[] M; //행을 제거한다. -> 완전 삭제됨. 만약 이걸 먼저 하면 메모리 누수가 발생한다. (Memory leaked occurs)
 
 Ch3.2 Singly Linked Lists / 단일 링크드 리스트 (p.29 ~ 44)
+Singly Linked Lists는 단방향(선형구조)으로만 가능하다.
+즉 노드의 next는 다음의 값을 가르킨다.
+처음을 head, 마지막을 tail이라 한다. / tail->next는 항상 nullptr이다다
+
+따라서 저장을 하는데 있어 단순하다는 장점이 있지만, 적용이 안좋다는 단점을 가지고 있다.
+class SLinkedList를 하게 된다면
+public으로
+생성자, 소멸자, empty여부, 가장 앞 문자열 반환, 추가, 삭제 등등
+private으로 head, (tail도) 를 가져온다.
+추가의 경우 a->b->c순으로 addFront()함수를 실행한다면
+head -> c -> b -> a(tail) -> nullptr이다.
+생성은 v, 삭제는 old로 포인터 변수를 선언해준다.
+
+template(템플릿)
+변수의 타입을 정해주지 않고, type을 항상 변할 수 있게 해주어 함수의 범용성을 넓혀줌.
+모든 함수 앞에 템플릿을 선언해주어야 함.
+ex.
+template <typename E>
+clss SNode {
+    private:
+        E elem;
+        SNode<E>* next;
+        friend class SLinkedList<E>;
+}
 
 Ch3.3 Doubly Linked Lists / 이중 링크드 리스트 (p.45 ~ 56)
 
