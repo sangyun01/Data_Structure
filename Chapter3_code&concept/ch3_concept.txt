@@ -87,6 +87,32 @@ clss SNode {
 }
 
 Ch3.3 Doubly Linked Lists / 이중 링크드 리스트 (p.45 ~ 56)
+Doubly Linked Lists는 prev와 next를 ptr로 가진다.
+
+node는 앞의 노드를 header, 뒤의 노드를 trailer로 선언한다.
+즉, head->next = 1st's elem / trailer->prev = last's elem
+insert하는 경우, dummy node가 존재한다면 과정이 간편해진다.
+-> if문 사용 필요 없으며 통일 가능
+z->prev = v
+z->next = w
+v->next = z
+w->prev = z
+
+remove의 경우, v ↔ z ↔ w라면
+v->next = w
+w->prev = v
+이후 delete z하면 된다.
+
+public함수
+생성, 소멸, 비었는지, 앞의 값, 뒤의 값 가져오기 추가 삭제는
+private(protected)
+header, trailer, add, remove함수
+void DLinkedList::add(DNode *v, const Elem &e) {}
+    // x-> u -> v 구조
+
+void DLinkedList::remove(DNode *v) {}
+    // u-> v -> w 구조
+
 
 Ch3.4 Circularly Linked Lists and List Reversal / 환형 링크드 리스트와 리스트 반전 (p.57 ~ 69)
 
