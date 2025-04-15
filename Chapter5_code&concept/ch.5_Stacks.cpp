@@ -39,7 +39,6 @@ class SNode {
     friend class SLinkedList;
 };
 
-
 class SLinkedList {
     public:
         SLinkedList();
@@ -51,6 +50,31 @@ class SLinkedList {
     private:
         SNode *head;
 };
+
+SLinkedList::SLinkedList() : head(NULL) {}
+SLinkedList::~SLinkedList() {
+    while (!empty()) {
+        removeFront();
+    }
+}
+bool SLinkedList::empty() const {
+    return head == nullptr;
+}
+const Elem &SLinkedList::front() const {
+    return head->elem;
+}
+void SLinkedList::addFront(const Elem &e) {
+    SNode *v = new SNode;
+    v->elem = e;
+    v->next = head;
+    head = v;
+}
+
+void SLinkedList::removeFront() {
+    SNode *old = head;
+    head = head->next;
+    delete old;
+}
 
 class LinkedStack {
     public:
@@ -65,6 +89,37 @@ class LinkedStack {
         SLinkedList S;
         int n;
 };
+
+LinkedStack::LinkedStack() : S(), n(0) {}   //S() is constructor of SLinkedList
+LinkedStack::~LinkedStack() {}
+int LinkedStack::size() const {
+    return n;
+}
+bool LinkedStack::empty() const {
+    return n == 0;  //S.empty()도 가능
+}
+const Elem &LinkedStack::top() const {
+    return S.front();
+}
+void LinkedStack::push(const Elem &e) {
+    n++;
+    S.addFront(e);
+}
+void LinkedStack::pop() {
+    --n;    // 값을 제거하는게 아니라서 remove함수 실행해야함 
+    S.removeFront();
+}
+
+void reverse(vector<Elem> &V) {
+    LinkedStack S;
+    for (int i = 0; i < V.size(); i++) {
+        S.push(V[i]);
+    }
+    for (int i = 0; i < V.size(); i++) {
+        V[i] = S.top();
+        S.pop();
+    }
+}
 
 int main() {
 
