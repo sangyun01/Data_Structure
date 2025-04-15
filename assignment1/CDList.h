@@ -12,19 +12,19 @@ typedef string Elem;    // Elem mean string
 class CDList;           // define class CDList
 
 class CNode {   // define CNode class
-    private:    // private variable elem, *next, *prev
+    private:
         Elem elem;
         CNode *next;
         CNode *prev;
 
-        friend class CDList;    // access for CDList
-        friend ostream &operator<<(ostream &out, const CDList &list);   // also access for ostream function
+        friend class CDList;
+        friend ostream &operator<<(ostream &out, const CDList &list);
 };
 
 class CDList {  // define CDList
     public:
-        CDList();   // constructor 
-        ~CDList();  // 
+        CDList();
+        ~CDList();
         bool empty() const;
         const Elem &front() const;
         const Elem &back() const;
@@ -34,9 +34,9 @@ class CDList {  // define CDList
         void remove();
 
         friend ostream &operator<<(ostream &out, const CDList &list);
-
+                                    // print the list
     private:
-        CNode *cursor;
+        CNode *cursor;              // pointer to current node
 };
 
 #endif

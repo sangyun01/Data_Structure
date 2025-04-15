@@ -56,5 +56,7 @@ int main() {
 	playList.remove();
 	std::cout << playList << std::endl;
 
+	getchar();
+
 	return EXIT_SUCCESS;
 }
