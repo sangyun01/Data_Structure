@@ -4,27 +4,27 @@
 #include <iostream>
 #include <string>
 
-using std::string;
-using std::ostream;
+using std::string;      // string std:: omit
+using std::ostream;     // osteam std:: omit
 
-typedef string Elem;
+typedef string Elem;    // Elem mean string
 
-class CDList;
+class CDList;           // define class CDList
 
 class CNode {   // define CNode class
-    private:
+    private:    // private variable elem, *next, *prev
         Elem elem;
         CNode *next;
         CNode *prev;
 
-        friend class CDList;
-        friend ostream &operator<<(ostream &out, const CDList &list);
+        friend class CDList;    // access for CDList
+        friend ostream &operator<<(ostream &out, const CDList &list);   // also access for ostream function
 };
 
 class CDList {  // define CDList
     public:
-        CDList();
-        ~CDList();
+        CDList();   // constructor 
+        ~CDList();  // 
         bool empty() const;
         const Elem &front() const;
         const Elem &back() const;
