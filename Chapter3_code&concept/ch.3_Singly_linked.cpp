@@ -7,7 +7,7 @@ class SNode {
     string elem;        // value를 elem에 저장
     SNode *next;        // next 노드를 가르키는 ptr
 
-    friend class SLinkedList; // StringLinkedList class에 접근하기 위해서 friend 선언
+    friend class SLinkedList; // StringLinkedList class에서서 접근하기 위해서 friend 선언
 };
 
 class SLinkedList {

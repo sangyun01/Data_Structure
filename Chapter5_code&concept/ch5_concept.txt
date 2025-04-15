@@ -1,0 +1,25 @@
+Ch5.1 Stacks / 스택 (p.2 ~ 22)
+Stacks is LIFO structure. (Last input First output)
+Stacks's fundamental operations is pushing(삽입) and popping(꺼내기)
+when add, push it down on the stack to become new top plate.
+when remove, pop the plate off stack.
+
+About Stacks structure ADT(abstract data type)
+push(e), pop(), top() / additionally size(), empty()
+function explain
+push    -> input element at top
+pop     -> delete element at top
+top     -> return the element value at top
+size    -> count the number of element
+empty   -> define the list is empty -> if empty and using top or pop function than print error message
+
+the advantage of stack is not move the element when we add or delete the element.
+if using the array, we remove or add the element then move the index.
+usally we set the t = -1 // so value t is -1, it means empty list.
+
+
+Ch5.2 Queues / 큐 (p.23 ~ 44)
+
+
+Ch5.3. Double-Ended Queues / ~ (p.45 ~ 58)
+
