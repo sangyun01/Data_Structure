@@ -35,4 +35,13 @@ so we set three variable to using circular
 f(front), r(rear, it point rear next point like at insert the element locate), n(current)
 
 Ch5.3. Double-Ended Queues / ~ (p.45 ~ 58)
+we pronounced deck about Double-Ended Queues
 
+already also exist header file <deque>
+size(), empty(), front(), back()
+push_front(), push_back(), pop_front(), pop_back()
+
+using class D
+
+also we can apated the class stack and queue made by deque
+using the some of the function about deque
