@@ -17,9 +17,22 @@ the advantage of stack is not move the element when we add or delete the element
 if using the array, we remove or add the element then move the index.
 usally we set the t = -1 // so value t is -1, it means empty list.
 
-
 Ch5.2 Queues / 큐 (p.23 ~ 44)
+Queues is FIFO structure. (First input First output)
+It means enter queue at rear(input method) and remove queue at front(output method)
 
+About Queues structure ADT operations
+enqueue()   -> input the data at rear
+dequeue()   -> output the data at front
+front()     -> not the output the data, only return the data at front
+empty()     -> check the list is empty
+size()      -> 0~n-1 -> n variable
+
+already provide the header file <queue>
+size(), empty(), push(e) -> it means enqueue, pop() -> it means dequeue, front(), back()
+Thus it similar structure circular linked list.
+so we set three variable to using circular
+f(front), r(rear, it point rear next point like at insert the element locate), n(current)
 
 Ch5.3. Double-Ended Queues / ~ (p.45 ~ 58)
 
