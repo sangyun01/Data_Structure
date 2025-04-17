@@ -1,0 +1,141 @@
+Ch6.1 Vectors / 벡터 (p.2 ~ 22)
+sequence that supports access to its elements by theire indices is called a vector.
+It can be access wherever index is located.
+vector also called an array list,
+So vector has an ADT.
+at(i), size(i, e), insert(i, e), erase(i)
+differently about linked list, vector is array list so It can be many times to using when the insert and erase process.
+also array size will be we also consider when using vector.
+because too large than using array size than waste the memory spcace, too small than using array size than cause the crash.
+method the when occur the overflow, when n=N and function insert is called.
+1. we using the size n and occur the overflow than size up the 2n.
+2. copy the value and remove the original array.
+3. firstly, set the size n = 1, the reason why n=0 than no increase the size array
+
+some of the function about Vector STL
+vector(n) -> constructor
+size()      -> return size
+empty()     -> check the vector array is empty
+resize(n)   -> change the size array n
+reserve(n)  -> initialy set 1, other set 2*n
+operatot[]  -> access the index i
+at(i)       -> return the element index i
+front()     -> return the first element
+back()      -> return the last element
+push_back(e)-> input the element value where last index, n += 1
+pop_back()  -> remove the element value where last index, n -= 1
+push and pop function also can be first and middle.
+
+Ch6.2 Lists / 리스트 (p.23 ~ 76)
+We set L is a (single or double) linked list.
+insert(v,e) is node v before which node od new element should be inserted. simply "link in"
+cannot linked list to access random index, so we used the concept the "Iterator"
+postion defined in a relative, so if nearly node(p,r) is delete than q is a uninvalidated.
+but Iterator is extenstion concept of postion.
+
+using the overloading concept like ++ or -- operator then can be easily access the move the random index.
+so, first we set the function
+L.begin() is beginnning iterator, and L.end() is ending iterator.
+apply the loop, we can access random index.
+method process is when we start L.begin() and repeat p++ about equal L.end()
+So L.begin() means first iterator object and L.end() means next to last iterator object
+if use insert(p,e) then input element e at p
+insertFront(e) = insert(L.begin(), e), insertEnd(e) = insert(L.end(), e)
+
+when the occur invalid situation
+1. not initialized p, or other set list postion
+2. already remove
+3. before the header node or after the trailer node access then will be waste data.
+Thus when p = L.begin() then It means node p about point front node, also means if q=p, q++ is same as q = p->next
+usually using the List is double linked list.
+so use struct or class
+class Node {
+    Elem elem;
+    Node *prev;
+    Node *next;
+};
+
+class A {
+    private:
+        friend class B;
+}
+It means class B can be access class A private variable
+
+Using STL
+int vectorSum1(const vector<int>& V) {
+    int sum = 0;
+    for (int i = 0; i < V.size(); i++)  // have  all of the number index element sum process 
+        sum += V[i];
+    return sum;
+}
+
+int vectorSum2(vector<int> V) {
+    typedef vector<int>::iterator Iterator;
+    int sum = 0;
+    for (Iterator p = V.begin(); p!=V.end();++p)
+        sum += *p;
+    return sum;
+}
+
+int vectorSum3(const vector<int> & V) {
+    typedef vector<int>::const_iterator ConstIterator;
+    int sum = 0;
+    for (ConstIterator p = V.begin(); p != V.end(); ++p)
+        sum += *p;
+    return sum;
+}
+
+when the addressing the elements of an array in this manner is called pointer arithmetic.
+
+STL function - list
+list(n)         -> constructor list n elements
+size()          -> element n
+empty()         -> check empty
+front()         -> return front value
+back()          -> return back value
+push_front(e)   -> input element e where front
+push_back(e)    -> input element e where last
+pop_front()     -> remove element first
+pop_back()      -> remove element last
+STL function - base container function (all of the function to deck / list is some of the function)
+vector(p,q)     -> constructor p ~ q-1
+assign(p,q)     -> destructor p ~ q-1
+insert(p,e)     -> input element e where before p
+erase(p)        -> remove element where p
+erase(p,q)      -> remove element p ~ q-1
+clear()         -> all delete element
+
+Ch6.3 Sequence / 시퀀스 (p.77 ~ 85)
+access vector and list
+atIndex(i)      -> return position of element at index i
+indexOf(p)      -> return index of element at position
+
+NodeSequence::Iterator NodeSequence::atIndex(int i) const {
+    Iterator p = begin();
+    for (int j = 0; j < i; j++)
+        ++p;
+    return p;
+}
+
+int NodeSequence::indexOf(const Iterator& p) const {
+    Iterator q = begin();
+    int j = 0;
+    while(q!=p) {
+        ++q;
+        ++j;
+    }
+    return j;
+}
+
+Ch6.4 case study bubble-sort on a Sequence / 사례 (p.86 ~ 91)
+pass 1
+5,7,2,6,9,3 → 5,2,7,6,9,3 → 5,2,6,7,9,3 → 5,2,6,7,3,9 // 9 100% done
+pass 2
+2,5,6,7,3,9 → 2,5,6,3,7,9 // 7, 9 100%
+pass 3
+2,5,3,6,7,9 // 6,7,9 100%
+pass 4
+2,3,5,6,7,9 // 5,6,7,9 100%
+pass 5
+2,3,5,6,7,9 // 2,3,5,6,7,9 100%
+-> max pass is number of index - 1
