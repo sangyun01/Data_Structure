@@ -6,26 +6,24 @@ using namespace std;
 typedef int Elem;
 class ArrayVector {
     public:
-        ArrayVector();
-        ~ArrayVector();
-        int size() const;
-        bool empty() const;
-        Elem &operator[](int i);
-        Elem &at(int i);
-        void erase(int i);
-        void insert(int i, const Elem &e);
-        void reserve(int N);
+        ArrayVector();              //constructor
+        ~ArrayVector();             //destructor
+        int size() const;           //size
+        bool empty() const;         // check the array is empty
+        Elem &operator[](int i);    // V[i]
+        Elem &at(int i);            // V[i] and check the index is invalid
+        void erase(int i);          // remove the element at index i
+        void insert(int i, const Elem &e);  // add the element at index i
+        void reserve(int N);        // change the array size to N
     private:
-        int capacity;
-        int n;
-        Elem *A;
+        int capacity;               // size the array
+        int n;                      // element the number of array index
+        Elem *A;                    // pointer about array
 }
 
 ArrayVector::ArrayVector() : capacity(0), n(0), A(NULL) {}
 ArrayVector::~ArrayVector() {
-    while(!empty()) {
-        erase()
-    }
+    delete[] A;
 }
 int ArrayVector::size() const {
     return n;
