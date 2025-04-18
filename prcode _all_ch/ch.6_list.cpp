@@ -155,17 +155,69 @@ DLinkedList::Iterator& DLinkedList::Iterator::operator--(int) {
     return temp;
 }
 
-DLinkedList::DLinkedList();
-DLinkedList::~DLinkedList();
-bool DLinkedList::empty() const;
-int DLinkedList::size() const;
-DLinkedList::Iterator DLinkedList::begin();
-DLinkedList::Iterator DLinkedList::end();
-void DLinkedList::Insert(const Iterator &p, const Elem &e)
-void DLinkedList::InsertFront(const Iterator &p, const Elem &e);
-void DLinkedList::InsertBack(const Iterator &p, const Elem &e);
-void DLinkedLsit::erase(const Iterator &p);
-void DLinkedList::eraseFront(const Iterator &p);
-void DLinkedList::eraseBack(const Iterator &p);
+DLinkedList::DLinkedList() {
+    header = new DNode;
+    trailer = new DNode;
+    header->next = trailer;
+    trailer->prev = header;
+    int n = 0;
+}
+DLinkedList::~DLinkedList() {
+    while (!empty()) {
+        eraseFront();
+    }
+    delete header;
+    delete trailer;
+}
+bool DLinkedList::empty() const {
+    return n == 0;
+}
+int DLinkedList::size() const {
+    return n;
+}
+DLinkedList::Iterator DLinkedList::begin() {
+    return Iterator(header->next);
+}
+DLinkedList::Iterator DLinkedList::end() {
+    return Iterator(trailer);
+}
+void DLinkedList::Insert(const Iterator &p, const Elem &e) {
+    DNode *w = p.v;
+    DNode *v = new DNode;
+    DNode *u = w->prev;
+    v->elem = e;
+    v->next = w;
+    v->prev = u;
+    u->next = v;
+    w->prev = v;
+    n++;
+}
+void DLinkedList::InsertFront(const Iterator &p, const Elem &e) {
+    Insert(begin(), e);
+}
+void DLinkedList::InsertBack(const Iterator &p, const Elem &e) {
+    Insert(end(), e);
+}
+void DLinkedList::erase(const Iterator &p) {
+    DNode *v = p.v;
+    DNode *u = v->prev;
+    DNode *w = v->next;
+    w->prev = u;
+    u->next = w;
+    delete v;
+    n--;
+}
+void DLinkedList::eraseFront(const Iterator &p) {
+    erase(begin());
+}
+void DLinkedList::eraseBack(const Iterator &p) {
+    erase(--end());
+    //the reason why -- end
+    // when the insert element process to front is input begin() header -> next : no problem
+    // also the insert element process to back is input end() trailer : no problem
+    // w is trailer, u is before the trailer->prev, so v is locate before the trailer
+    // erase element process to front is header -> next, exatly begin() so not occur the issue
+    // but erase element process to back is end() is erase the trailer, so It is access the private variable furthermore not erase we want element e(where locate Iterater &p)
+}
 
 
