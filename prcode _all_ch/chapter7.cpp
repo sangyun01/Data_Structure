@@ -1,5 +1,6 @@
 #include <cstdlib>
 #include <iostream>
+#include <list>
 
 using namespace std;
 
@@ -27,7 +28,7 @@ class Tree<E> {
 
 
 int depth(const Tree&T, const Position& p) {
-    if(R.isRoot()) {
+    if(P.isRoot()) {
         return 0;
     }
     else {
@@ -46,6 +47,43 @@ int height1(const Tree &T) {
     return h;
 }
 
+int height2(const Tree& T, const Position& p) {
+    if (p.isExternal())
+        return 0;
+    int h = 0;
+    PositionList ch = p.children();
+    for (Iterator q = ch.begin(); q != ch.end(); ++q)
+        h = max(h, height2(T, *q));
+    return 1 + h;
+}
+
+void preorderPrint(const Tree &T, const Position &p) {
+    cout << *p;
+    PositionList ch = p.children();
+    for (Iterator q = ch.begin(); q != ch.end(); ++q) {
+        cout << " ";
+        preorderPrint(T, *q);
+    }
+}
+
+void parenPrint(const Tree& T, const Position& p) {
+    cout << *p;
+    if(!p.isExternal()) {
+        PositionList ch = p.children();
+        cout << "( ";
+        for (Iterator q = ch.begin(); q != ch.end(); ++q) {
+            if(q!=ch.begin())
+                cout << " ";
+            parenPrint(T, *q);
+        }
+        cout << " )";
+    }
+}
+
+void postorderPrint(const Tree&T, const Position& p) {
+    PositionList ch = p.children();
+    for(Ite)
+}
 
 int main() {
 
