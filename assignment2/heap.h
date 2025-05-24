@@ -52,4 +52,3 @@ class HeapPriorityQueue {
 
         typedef typename VectorCompleteTree<E>::Position Position;
 };
-

@@ -51,4 +51,3 @@ void HeapPriorityQueue<E, C>::removeMin() {
 
 template class HeapPriorityQueue<int, Comparator<int>>;
 template class HeapPriorityQueue<char, Comparator<char>>;
-
