@@ -1,0 +1,12 @@
+Ch8.1 -> PriorityQueue
+template <typename E, typename C>
+class PriorityQueue {
+    public:
+        int size() const;
+        bool isempty() const;
+        void insert(const E &e);
+        const E &min() const throw(QueueEmpty);
+        void removeMin() throw(QueueEmpty);
+};
+
+Ch8.2 -> ListPriorityQueue
