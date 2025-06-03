@@ -1,12 +1,25 @@
-Ch8.1 -> PriorityQueue
-template <typename E, typename C>
-class PriorityQueue {
-    public:
-        int size() const;
-        bool isempty() const;
-        void insert(const E &e);
-        const E &min() const throw(QueueEmpty);
-        void removeMin() throw(QueueEmpty);
-};
+Ch7.1 -> General Trees(nonlinear Data Structure)
+tree are hierarchical(계층 구조) -> above and below
+not parent has one child -> more child element
+top == root -> (root is most of parent)
+external -> no child / internal -> has one or more children
 
-Ch8.2 -> ListPriorityQueue
+So tree STL consist of iterator
+p.parent() -> parent of p node
+p.children() -> children of p node
+p.isRoot() -> return true when the p has parent -> only occure the false when the p is root
+p.isExternal() -> return the true p is leaf
+
+Tree function
+size() / empty() / root() / positions() -> using iterator
+
+
+
+
+
+
+
+
+
+
+
