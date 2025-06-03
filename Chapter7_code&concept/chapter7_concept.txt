@@ -13,11 +13,37 @@ p.isExternal() -> return the true p is leaf
 Tree function
 size() / empty() / root() / positions() -> using iterator
 
+3 type of PrintTree function
+ex)
+A
+B1 | B2
+C11 | C12 || C21 
 
+preorderPrint
+-> result is A -> B1 -> C11 -> C12 -> B2 -> C21
 
+parentPrint
+-> result is A(B1(C11 C12) B2(C21))
 
+postorderPrint
+-> result is C11 -> C12 -> B1 -> C21 -> B2 -> A
 
+Ch7.3 Binary Trees
+Binary Tree has only two children -> like Yes or No
+p.left() -> return left child of node p
+p.right() -> return right child of node p
+p.parent() -> return parent of node p
+p.isRoot() -> check the node p is root
+p.isExternal() -> check the node p is leaf
 
+Binary Tree ADT
+size() / empty() / root() / positions()
+
+when the height is h
+1 <= n_E <= 2^h // can have the leaf 1 ~ 2^h
+h <= n_I <= 2^h - 1 // least h (like list) ~ 2^h -1 (maximum)
+h + 1 <= n <= 2^(h+1) -1  // sum
+log(n+1) - 1 <= h <= n-1
 
 
 
