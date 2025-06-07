@@ -1,1 +1,126 @@
-    
+#include <iostream>
+#include <vector>
+#include <list>
+#include <iterator>
+
+template<typename K, typename V>
+class Entry {
+    public:
+        Entry(const K &k = K(), const V &v = V()) : _key(k), _value(v) {}
+        const K &key() const { return _key; }
+        const V &value() const { return _value; }
+        void setKey(const K &k) { _key = k; }
+        void setValue(const V &v) { _value = v; }
+    private:
+        K _key;
+        V _value;
+};
+
+template <typename K, typename V, typename H>
+class HashMap {
+    public:
+        typedef Entry<const K, V> Entry;
+        class Iterator;                 // 3rd user code of Iterator -> when the using the move the other entry
+    public:
+        HashMap(int capacity = 100);    // constructor
+        int size() const;               // return the hash table size
+        bool empty() const;             // check the hash table is empty
+        Iterator find(const K &k);      // find the position of Key value
+        Iterator put(const K &k, const V &v);   // input the element pair k, v
+        void erase(const K &k);         // remove entry with key k
+        void erase(const Iterator &p);  // erase entry at p
+        Iterator begin();
+        Iterator end();
+    protected:
+        typedef std::list<Entry> Bucket;        // 2nd bucket list Iterator
+        typedef std::vector<Bucket> BktArray;   // 1st bucket array Iterator
+        Iterator finder(const K &k);
+        Iterator inserter(const Iterator &p, const Entry &e);
+        void eraser(const Iterator &p);
+        typedef typename BktArray::iterator Bltor;
+        typedef typename Bucket::iterator Eltor;
+        static void nextEntry(Iterator &p) { ++p.ent; }
+        static bool endOfBkt(const Iterator &p) { return p.ent == p.bkt->end(); }
+    private:
+        int n;
+        H hash;
+        BktArray B;
+    public:
+        class Iterator {
+            private:
+                Eltor ent;
+                Bltor bkt;
+                const BktArray *ba;
+            public:
+                Iterator(const BktArray &a, const Bltor &b, const Eltor &q = Eltor()) : ent(q), bkt(b), ba(&a) {}
+                Entry &operator*() const;
+                bool operator==(const Iterator&p) const;
+                Iterator &operator++();
+                friend class HashMap;
+        };
+};
+
+template <typename K, typename V, typename H>
+typename HashMap<K, V, H>::Entry &HashMap<K, V, H>::Iterator::operator*() const {
+    return *ent;
+}
+
+template <typename K, typename V, typename H>
+bool HashMap<K, V, H>::Iterator::operator==(const Iterator &p) const {
+    if (ba != p.ba || bkt != p.bkt)
+        return false;
+    else if (bkt == ba->end())
+        return true;
+    else
+        return ent == p.ent;
+}
+
+template <typename K, typename V, typename H>
+typename HashMap<K, V, H>::Iterator &HashMap<K, V, H>::Iterator::operator++() {
+    ++ent;
+    if (endOfBkt(*this)) {
+        ++bkt;
+        while (bkt != ba->end() && bkt->empty())
+            ++bkt;
+        if (bkt == ba->end())
+            return *this;
+        ent = bkt->begin();
+    }
+    return *this;
+}
+
+template <typename K, typename V, typename H>
+typename Iterator HashMap<K, V, H>::end() {
+    return Iterator(B, B.end());
+}
+
+template <typename K, typename V, typename H>
+typename Iterator HashMap<K, V, H>::begin() {
+    if
+}
+
+
+template <typename K, typename V, typename H>
+HashMap<K, V, H>::HashMap(int capacity) : n(0), B(capacity) {}
+
+template <typename K, typename V, typename H>
+int HashMap<K, V, H>::size() const {
+    return n;
+}
+
+template <typename K, typename V, typename H>
+bool HashMap<K, V, H>::empty() const {
+    return size() == 0;
+}
+
+template <typename K, typename V, typename H>
+typename Iterator HashMap<K, V, H>::finder(const K &k) {
+    int i = hash(k) % B.size();
+    Bltor bkt = B.begin() + i;
+    Iterator p(B, bkt, bkt->begin());
+    while (!endOfBkt(p) && (*p).key() != k)
+        nextEntry(p);
+    return p;
+}
+
+
