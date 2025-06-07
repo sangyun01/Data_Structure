@@ -10,3 +10,21 @@ class PriorityQueue {
 };
 
 Ch8.2 -> ListPriorityQueue
+Queue / PriorityQueue의 장단점 서로 반대
+Queue(Selection-Sort) -> input simple, sort and output process -> hard
+PriorityQueue(Insertion-Sort) -> sort and input process -> hard, output -> easy
+
+Ch8.3 -> Heaps
+ex) (4, C) -> 우선순위가 4인 value C라는 pair
+Heap ->
+root에서부터 leaf로 무조건 모든 leaf의 값을 다 채워야 다음 height으로 증가 해야한다.
+children은 left -> right로 채워진다.
+이때 root의 우선순위 값은 항상 children보다 작아야한다.
+다시 말해 해당 부모의 자식의 값은 부모보다 큰 우선순위를 가진다.
+
+insert -> 가장 마지막 노드(가장 큰 height & 가장 right)에 들어간다. 이후 부모와 값을 비교하여 변경하는 방식으로 완성된다.
+remove -> 루트와 가장 마지막 노드를 교체하고, 마지막 노드(여기선 루트를 말함)를 제거한다. 이 경우 우선순위가 가장 빠른 노드의 값이 제거가 된다.
+이후 루트(이전의 마지막 노드였던거)를 children과 비교하여, 우선적으로 left와 먼저 비교 후, 이후 right와 비교하여 더 작은 children의 값과 변경하며 이를 반복한다.
+
+결론 : heap은 complete binary tree 형태로 이루어져있고, 이때 heap으로 PriorityQueue를 주로 구현한다.
+즉, PriorityQueue를 구현해야한다 -> heap으로 구현하자. -> heap은 완전한 이진트리 형태이다. -> 벡터의 STL을 이용한다.
