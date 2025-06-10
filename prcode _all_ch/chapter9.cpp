@@ -98,7 +98,7 @@ template <typename K, typename V, typename H>
 typename HashMap<K, V, H>::Iterator HashMap<K, V, H>::begin() {
     if (empty())
         return end();
-    Bltor bkt = B.begin();
+    Bltor bkt = B.begin();  
     while (bkt->empty())
         ++bkt;
     return Iterator(B, bkt, bkt->begin());
