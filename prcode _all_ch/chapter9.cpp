@@ -32,7 +32,7 @@ public:
     Iterator begin();
     Iterator end();
 protected:
-    typedef std::list<Entry> Bucket;        // 2nd bucket list Iterator
+    typedef std::list<Entry> Bucket;        // 2nd bucket list Iteratorx
     typedef std::vector<Bucket> BktArray;   // 1st bucket array Iterator
     Iterator finder(const K& k);
     Iterator inserter(const Iterator& p, const Entry& e);
