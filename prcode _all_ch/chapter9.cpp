@@ -20,20 +20,20 @@ template <typename K, typename V, typename H>
 class HashMap {
 public:
     typedef Entry<const K, V> Entry;
-    class Iterator;                 // 3rd user code of Iterator -> when the using the move the other entry
+    class Iterator;                 
 public:
-    HashMap(int capacity = 100);    // constructor
-    int size() const;               // return the hash table size
-    bool empty() const;             // check the hash table is empty
-    Iterator find(const K& k);      // find the position of Key value
-    Iterator put(const K& k, const V& v);   // input the element pair k, v
-    void erase(const K& k);         // remove entry with key k
-    void erase(const Iterator& p);  // erase entry at p
+    HashMap(int capacity = 100);   
+    int size() const;               
+    bool empty() const;             
+    Iterator find(const K& k);     
+    Iterator put(const K& k, const V& v);   
+    void erase(const K& k);         
+    void erase(const Iterator& p);  
     Iterator begin();
     Iterator end();
 protected:
-    typedef std::list<Entry> Bucket;        // 2nd bucket list Iteratorx
-    typedef std::vector<Bucket> BktArray;   // 1st bucket array Iterator
+    typedef std::list<Entry> Bucket;        
+    typedef std::vector<Bucket> BktArray;
     Iterator finder(const K& k);
     Iterator inserter(const Iterator& p, const Entry& e);
     void eraser(const Iterator& p);
